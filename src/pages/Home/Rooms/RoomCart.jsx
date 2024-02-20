@@ -1,8 +1,13 @@
+import { formatDistance } from 'date-fns';
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 const RoomCart = ({room}) => {
     const {location,image,price,category} = room;
+    console.log(room)
+    const night = parseFloat(formatDistance(new Date(room.to), new Date(room.from)).split(' ')[0]);
+    console.log(night)
+
     return (
         <div className='group relative'>
             <div className='aspect-square w-full overflow-hidden rounded-xl'>
@@ -24,7 +29,7 @@ const RoomCart = ({room}) => {
             </div>
             <div className='font-semibold py-2'>{location}</div>
             {/* TODO:make daterange diiferance dynamic */}
-            <div className='text-neutral-500'>{"5 nights"}</div>
+            <div className='text-neutral-500'>{`${night}s`}</div>
             <div className='font-semibold py-2'>$ {price} <span className='font-light'>night</span></div>
         </div>
     );
